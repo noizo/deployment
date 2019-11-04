@@ -41,3 +41,22 @@ To install:
 
 This installs the coredns binary in /usr/bin, adds a coredns user (homedir set to /var/lib/coredns)
 and a small Corefile /etc/coredns.
+
+To config:
+ - `vim $(brew --prefix)/etc/coredns/Corefile`
+ ```
+ somehost.com {
+  log
+  forward . someip:53
+  cache
+  errors
+}
+. {
+  hosts {
+    fallthrough
+  }
+  forward . https://8.8.8.8:53 https://8.8.4.4:53
+  cache
+  errors
+}
+```
